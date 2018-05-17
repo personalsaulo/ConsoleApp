@@ -21,7 +21,7 @@ namespace ConsoleApp
 
             alunos = new Pessoa[quantidade];
 
-           for (int posicao = 0; posicao < quantidade; posicao++)
+            for (int posicao = 0; posicao < quantidade; posicao++)
             {
                 alunos[posicao] = new Pessoa();
                 Console.WriteLine("Qual o nome do aluno?");
@@ -30,14 +30,31 @@ namespace ConsoleApp
                 alunos[posicao].idade = int.Parse(Console.ReadLine());
             }
 
-            for (int p = 0; p < quantidade; p++)
+            bool Trocou;
+
+            do
             {
-                Console.WriteLine("Nome do aluno: " + alunos[p].nome);
-                Console.WriteLine("Idade do aluno: " + alunos[p].idade);
-            }
+                Trocou = false;
+                for (int i = 0; i < alunos.Length-1; i++)
+                {
+                    if (alunos[i].nome.CompareTo(alunos[i + 1].nome) > 0)
+                    {
+                        Pessoa Aux = alunos[i + 1];
+                        alunos[i + 1] = alunos[i];
+                        alunos[i] = Aux;
+                        Trocou = true;
+                    }
+                }
+            } while (Trocou);
+
+
+
+
+            for (int p = 0; p < quantidade; p++)
+                Console.WriteLine("Nome: " + alunos[p].nome + " - Idade: " + alunos[p].idade);
 
             Console.ReadKey();
-            
+
         }
     }
 }
